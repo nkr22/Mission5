@@ -53,57 +53,61 @@
                     <h5 class="text-center mb-4">Powering our movie addiction</h5>
                     <form class="form-card" method="post">
                         <div class="row justify-content-between text-left">
-                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3" asp-for="Category">Category:<span class="text-danger"> *</span></label> 
-                                <select asp-for="Category">
-                                    <option value="">Select a Category</option>
-                                    @foreach (Category c in ViewBag.Categories)
+                            <div asp-validation-summary="All"></div>
+                        </div>
+                            <div class="row justify-content-between text-left">
+                                <div class="form-group col-sm-6 flex-column d-flex">
+                                    <label class="form-control-label px-3" asp-for="CategoryId">Category:<span class="text-danger"> *</span></label>
+                                    <select asp-for="CategoryId">
+                                        <option value="">Select a Category</option>
+                                        @foreach (Category c in ViewBag.Categories)
                                         {
                                             <option value="@c.CategoryId">@c.CategoryName</option>
                                         }
-                                </select>
+                                    </select>
+                                </div>
+                                <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3" asp-for="Title">Title:<span class="text-danger"> *</span></label> <input type="text" asp-for="Title" placeholder="Enter the Title"> </div>
                             </div>
-                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3" asp-for="Title">Title:<span class="text-danger"> *</span></label> <input type="text" asp-for="Title" placeholder="Enter the Title" > </div>
-                        </div>
-                        <div class="row justify-content-between text-left">
-                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3" asp-for="Year">Year:<span class="text-danger"> *</span></label> <input type="text" asp-for="Year" placeholder="" onblur="validate(3)"> </div>
-                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3" asp-for="Director">Director:<span class="text-danger"> *</span></label> <input type="text" asp-for="Director" placeholder="" > </div>
-                        </div>
-                        <div class="row justify-content-between text-left">
-                            <div class="form-group col-sm-6 flex-column d-flex">
-                                <label class="form-control-label px-3" asp-for="Rating">Rating:<span class="text-danger"> *</span></label>
-                                <select asp-for="Rating">
-                                    <option value="">Select a Rating</option>
-                                    <option value="G">G</option>
-                                    <option value="PG">PG</option>
-                                    <option value="PG-13">PG-13</option>
-                                    <option value="R">R</option>
-                                </select>
+                            <div class="row justify-content-between text-left">
+                                <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3" asp-for="Year">Year:<span class="text-danger"> *</span></label> <input type="text" asp-for="Year" placeholder="" onblur="validate(3)"> </div>
+                                <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3" asp-for="Director">Director:<span class="text-danger"> *</span></label> <input type="text" asp-for="Director" placeholder=""> </div>
                             </div>
-                        </div>
+                            <div class="row justify-content-between text-left">
+                                <div class="form-group col-sm-6 flex-column d-flex">
+                                    <label class="form-control-label px-3" asp-for="Rating">Rating:<span class="text-danger"> *</span></label>
+                                    <select asp-for="Rating">
+                                        <option value="">Select a Rating</option>
+                                        <option value="G">G</option>
+                                        <option value="PG">PG</option>
+                                        <option value="PG-13">PG-13</option>
+                                        <option value="R">R</option>
+                                    </select>
+                                </div>
+                            </div>
 
-                        <div class="row justify-content-between text-left">
-                            <div class="form-group col-sm-6 flex-column d-flex">
-                                <label class="form-control-label px-3" asp-for="Edited">Edited:<span class="text-danger"> *</span></label>
-                                <select asp-for="Edited">
-                                    <option value="">Is it edited?</option>
-                                    <option value="true">Yes</option>
-                                    <option value="false">No</option>
-                                </select>
+                            <div class="row justify-content-between text-left">
+                                <div class="form-group col-sm-6 flex-column d-flex">
+                                    <label class="form-control-label px-3" asp-for="Edited">Edited:<span class="text-danger"> *</span></label>
+                                    <select asp-for="Edited">
+                                        <option value="">Is it edited?</option>
+                                        <option value="true">Yes</option>
+                                        <option value="false">No</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row justify-content-between text-left">
-                            <div class="form-group col-sm-6 flex-column d-flex">
-                                <label class="form-control-label px-3" asp-for="LentTo">Lent To:<span class="text-danger"> *</span></label>
-                                <input asp-for="LentTo" />
+                            <div class="row justify-content-between text-left">
+                                <div class="form-group col-sm-6 flex-column d-flex">
+                                    <label class="form-control-label px-3" asp-for="LentTo">Lent To:<span class="text-danger"> *</span></label>
+                                    <input asp-for="LentTo" />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="row justify-content-between text-left">
-                            <div class="form-group col-12 flex-column d-flex"> <label class="form-control-label px-3" asp-for="Notes">Notes<span class="text-danger"> *</span></label> <textarea type="text" asp-for="Notes" placeholder="" ></textarea> </div>
-                        </div>
-                        <div class="row justify-content-end">
-                            <div class="form-group col-sm-6"> <button type="submit" class="btn-block btn-primary">Submit Movie</button> </div>
-                        </div>
+                            <div class="row justify-content-between text-left">
+                                <div class="form-group col-12 flex-column d-flex"> <label class="form-control-label px-3" asp-for="Notes">Notes<span class="text-danger"> *</span></label> <textarea type="text" asp-for="Notes" placeholder=""></textarea> </div>
+                            </div>
+                            <div class="row justify-content-end">
+                                <div class="form-group col-sm-6"> <button type="submit" class="btn-block btn-primary">Submit Movie</button> </div>
+                            </div>
                     </form>
                 </div>
             </div>

@@ -50,7 +50,9 @@ namespace mission5.Controllers
             }
             else
             {
-                return View(MovieForm(fr));
+
+                ViewBag.Categories = M5Context.Categories.ToList();
+                return View(fr);
             }
 
 
@@ -63,6 +65,40 @@ namespace mission5.Controllers
             return View(submissions);
         }
 
+        [HttpGet]
+        public IActionResult Edit(int movieid)
+        {
+            ViewBag.Categories = M5Context.Categories.ToList();
+            var submission = M5Context.Responses.Single(x => x.MovieId == movieid);
+            return View("MovieForm", submission);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(FormResponse fr)
+        {
+            M5Context.Update(fr);
+            M5Context.SaveChanges();
+            return RedirectToAction("MovieList");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int movieid)
+        {
+            var submission=M5Context.Responses.Single(x => x.MovieId == movieid);
+
+            return View(submission);
+
+        }
+
+        [HttpPost]
+        public IActionResult Delete(FormResponse fr)
+        {
+            M5Context.Responses.Remove(fr);
+            M5Context.SaveChanges();
+
+            return RedirectToAction("MovieList");
+            
+        }
         //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         //public IActionResult Error()
         //{
